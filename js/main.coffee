@@ -11,13 +11,13 @@ class Game
       oneMole =new Mole this
       moles.push(oneMole);
       holes.push(this);
-      $(this).on('click tap', (e)->
-        if oneMole.isPopped() 
-          _me.bangSound.load();
-          _me.bangSound.play();
-          _me.hits = _me.hits + oneMole.unpopMole(false)
-          hitDOMElement.html(_me.hits)
-        )
+      # $(this).on('click tap', (e)->
+        # if oneMole.isPopped() 
+          # _me.bangSound.load();
+          # _me.bangSound.play();
+          # _me.hits = _me.hits + oneMole.unpopMole(false)
+          # hitDOMElement.html(_me.hits)
+        # )
     );
     @moles = moles;
     newGameDOMElement.click((e)->
@@ -37,14 +37,16 @@ class Game
       )
     @liveDOMElement =liveDOMElement;
     @hitDOMElement  =hitDOMElement;
-    # @gridDOMElement.on('mousedown tap', (e)->
-        # clickedMole =moles[holes.indexOf(e.toElement)];
-        # if !!clickedMole && clickedMole.isPopped() 
-          # _me.bangSound.load();
-          # _me.bangSound.play();
-          # _me.hits = _me.hits + clickedMole.unpopMole(false)
-          # hitDOMElement.html(_me.hits)
-        # )
+    @gridDOMElement.on('mousedown tap', (e)->
+        e.preventDefault();
+        e.stopPropagation();
+        clickedMole =moles[holes.indexOf(e.toElement)];
+        if !!clickedMole && clickedMole.isPopped() 
+          _me.bangSound.load();
+          _me.bangSound.play();
+          _me.hits = _me.hits + clickedMole.unpopMole(false)
+          hitDOMElement.html(_me.hits)
+        )
   endGame: ()->
     clearInterval(@gameTimer);
     @gameTimer = false;

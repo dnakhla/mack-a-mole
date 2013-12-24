@@ -32,15 +32,7 @@
         var oneMole;
         oneMole = new Mole(this);
         moles.push(oneMole);
-        holes.push(this);
-        return $(this).on('click tap', function(e) {
-          if (oneMole.isPopped()) {
-            _me.bangSound.load();
-            _me.bangSound.play();
-            _me.hits = _me.hits + oneMole.unpopMole(false);
-            return hitDOMElement.html(_me.hits);
-          }
-        });
+        return holes.push(this);
       });
       this.moles = moles;
       newGameDOMElement.click(function(e) {
@@ -64,6 +56,18 @@
       });
       this.liveDOMElement = liveDOMElement;
       this.hitDOMElement = hitDOMElement;
+      this.gridDOMElement.on('mousedown tap', function(e) {
+        var clickedMole;
+        e.preventDefault();
+        e.stopPropagation();
+        clickedMole = moles[holes.indexOf(e.toElement)];
+        if (!!clickedMole && clickedMole.isPopped()) {
+          _me.bangSound.load();
+          _me.bangSound.play();
+          _me.hits = _me.hits + clickedMole.unpopMole(false);
+          return hitDOMElement.html(_me.hits);
+        }
+      });
     }
 
     Game.prototype.endGame = function() {
