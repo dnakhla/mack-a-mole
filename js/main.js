@@ -8,7 +8,7 @@
       var holes, moles, _me;
       this.gridDOMElement = gridDOMElement != null ? gridDOMElement : $('#gameboard');
       if (lives == null) {
-        lives = 50;
+        lives = 25;
       }
       if (newGameDOMElement == null) {
         newGameDOMElement = $('#newGame');
@@ -56,11 +56,11 @@
       });
       this.liveDOMElement = liveDOMElement;
       this.hitDOMElement = hitDOMElement;
-      this.gridDOMElement.on('mousedown tap', function(e) {
+      this.gridDOMElement.on('mousedown touchstart', function(e) {
         var clickedMole;
         e.preventDefault();
         e.stopPropagation();
-        clickedMole = moles[holes.indexOf(e.toElement)];
+        clickedMole = moles[holes.indexOf(e.target)];
         if (!!clickedMole && clickedMole.isPopped()) {
           _me.bangSound.load();
           _me.bangSound.play();
@@ -128,7 +128,7 @@
         _popped = true;
         $(moleDOMElement).addClass('popped');
         _popped;
-        return this.unpopEvent = window.setTimeout(function() {
+        return this.unpopEvent = setTimeout(function() {
           return unpopMole(true);
         }, speed);
       };
@@ -140,13 +140,17 @@
         $(moleDOMElement).removeClass('popped');
         if (missed === false) {
           $(moleDOMElement).addClass('popped-hit');
-          window.setTimeout(function() {
+          setTimeout(function() {
             return $(moleDOMElement).removeClass('popped-hit');
           }, 100);
           clearTimeout(this.unpopEvent);
           return 1;
         } else {
           $(document).trigger('missed');
+          $(moleDOMElement).addClass('popped-missed');
+          setTimeout(function() {
+            return $(moleDOMElement).removeClass('popped-missed');
+          }, 100);
           return 0;
         }
       };

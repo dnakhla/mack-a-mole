@@ -2,6 +2,10 @@
 	padding: 0px;
 	margin: 0px;
 	font-family: Helvetica, sans-serif;
+	overflow: hidden;
+}
+*:active {
+
 }
 audio {
 	display: none;
@@ -17,6 +21,7 @@ body {
 footer {
 	text-align: left;
 	font-size: 8px;
+	float: left;
 }
 h1 {
 	font-size: 1em;
@@ -160,6 +165,10 @@ section {
 }
 
 #gameboard li.popped-hit {
+	background: #47bd8a;
+}
+
+#gameboard li.popped-missed {
 	background: #BD4F47;
 }
 

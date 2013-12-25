@@ -1,6 +1,7 @@
 'use strict'
+#made with coffee because i wanted to keep practicing it
 class Game
-  constructor: (@gridDOMElement = $('#gameboard'),lives=50, newGameDOMElement =$('#newGame'), hitDOMElement =  $('#hit'), liveDOMElement = $('#lives'), @historyDOMElement=$('.history'), @popSound=document.getElementById('popSound'), @bangSound=document.getElementById('bangSound')) ->
+  constructor: (@gridDOMElement = $('#gameboard'),lives=25, newGameDOMElement =$('#newGame'), hitDOMElement =  $('#hit'), liveDOMElement = $('#lives'), @historyDOMElement=$('.history'), @popSound=document.getElementById('popSound'), @bangSound=document.getElementById('bangSound')) ->
     _me = this;
     moles = [];
     holes=[];
@@ -11,10 +12,12 @@ class Game
       oneMole =new Mole this
       moles.push(oneMole);
       holes.push(this);
-      # $(this).on('click tap', (e)->
+      # $(this).on('touchend', (e)->
+        # e.preventDefault();
+        # e.stopPropagation();
         # if oneMole.isPopped() 
-          # _me.bangSound.load();
           # _me.bangSound.play();
+          # _me.bangSound.load();
           # _me.hits = _me.hits + oneMole.unpopMole(false)
           # hitDOMElement.html(_me.hits)
         # )
@@ -31,16 +34,17 @@ class Game
     $(document).on('missed', (e)->
        _me.misses-- if _me.misses > 0
        liveDOMElement.html(_me.misses)
-       _me.popSound.load();
+       _me.popSound.load()
        _me.popSound.play();
        return _me.endGame() if _me.misses == 0  &&  _me.gameTimer != false
       )
     @liveDOMElement =liveDOMElement;
     @hitDOMElement  =hitDOMElement;
-    @gridDOMElement.on('mousedown tap', (e)->
+    #more effcient that binding to the elements
+    @gridDOMElement.on('mousedown touchstart', (e)->
         e.preventDefault();
         e.stopPropagation();
-        clickedMole =moles[holes.indexOf(e.toElement)];
+        clickedMole =moles[holes.indexOf(e.target)];
         if !!clickedMole && clickedMole.isPopped() 
           _me.bangSound.load();
           _me.bangSound.play();
@@ -54,7 +58,6 @@ class Game
        clearTimeout(mole.unpopEvent);
        mole.unpopMole(false);
     alert('Game Over!')
-    
     @historyDOMElement.show().append('<li>'+@hits+'</li>');       
   render: (delay = 3000) ->
     @hitDOMElement.html(@hits)
@@ -77,7 +80,7 @@ class Mole
       _popped=true;
       $(moleDOMElement).addClass('popped');
       _popped;
-      @unpopEvent = window.setTimeout(
+      @unpopEvent = setTimeout(
         ()->
          unpopMole(true)
         , speed);
@@ -86,13 +89,17 @@ class Mole
       $(moleDOMElement).removeClass('popped');
       if missed==false
         $(moleDOMElement).addClass('popped-hit');
-        window.setTimeout(()->
+        setTimeout(()->
          $(moleDOMElement).removeClass('popped-hit');
         , 100);
         clearTimeout(@unpopEvent);
         return 1
       else
         $(document).trigger('missed');
+        $(moleDOMElement).addClass('popped-missed');
+        setTimeout(()->
+         $(moleDOMElement).removeClass('popped-missed');
+        , 100);
         return 0
     @popMole = popMole;
     @unpopMole = unpopMole;

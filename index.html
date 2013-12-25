@@ -8,30 +8,31 @@
 		<title>whack a mole game</title>
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="viewport" content="user-scalable=no">
-		<meta name="viewport" content="initial-scale=1,maximum-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1">
 		<meta name="description" content="" />
 		<meta name="author" content="Daniel Nakhla" />
-		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
-		<link rel="shortcut icon" href="/favicon.ico" />
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<!-- the style sheet here is a big part of the game, by changing the style and the gameboard items
+		below we can create number of 'shooting' or whack a mole type games using the same
+		JS engine, i wont put moderiziner or any of that extra stuff for now -->
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 
 	<body>
 		<div>
 			<header>
-				<h1 class='shadow'>whack-a-mole</h1>
+				<h1 class='shadow'>whack-a-developer</h1>
 			</header>
 			<nav>
 				<a id='newGame' href="">start new game</a>
 			</nav>
-
 			<section>
 				<div class='stats'>
 					<label class='left'>Hits: <span id="hit">0</span></label>
 					<label class='right'>Lives:<span id="lives">0</span></label>
 				</div>
 				<ul id='gameboard'>
+					<!-- the number of list items here decide the 'holes' -->
+					<!-- the CSS can be used to change the type of game or experience -->
 					<li></li>
 					<li></li>
 					<li></li>
@@ -47,14 +48,11 @@
 				<ol class='history stats shadow'></ol>
 			</section>
 			<footer>
-				<p>
-					dnakhla@gmail.com
-				</p>
+				dnakhla@gmail.com
 			</footer>
 		</div>
-		<audio id='bangSound' src="/files/bang.mp3"></audio>
-		<audio id='popSound' src="/files/pop.mp3"></audio>
-		<script src='js/lib/tap.js'></script>
+		<audio id='bangSound' src="/files/bang.wav"></audio>
+		<audio id='popSound' src="/files/pop.wav"></audio>
 		<script src='js/lib/zepto.min.js'></script>
 		<script src='js/main.js'></script>
 	</body>
