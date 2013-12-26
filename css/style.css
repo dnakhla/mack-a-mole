@@ -4,9 +4,6 @@
 	font-family: Helvetica, sans-serif;
 	overflow: hidden;
 }
-*:active {
-
-}
 audio {
 	display: none;
 }
@@ -166,21 +163,22 @@ section {
 
 #gameboard li.popped-hit {
 	background: #47bd8a;
+	border: 1px solid #47bd8a;
 }
 
 #gameboard li.popped-missed {
-	background: #fff url('/css/img/mole.jpg') no-repeat;
-	background-position: -3px 50px;
+	background: #BD4F47 url('/css/img/mole.jpg') no-repeat -3px 80px;
+	border: 1px solid #BD4F47;
 	/*transition-property*/
 	-webkit-transition-property: background-position;
 	-moz-transition-property: background-position;
 	-o-transition-property: background-position;
 	transition-property: background-position;
 	/*transition-duration*/
-	-webkit-transition-duration: .2s;
-	-moz-transition-duration: .2s;
-	-o-transition-duration: .2;
-	transition-duration: .2s;
+	-webkit-transition-duration: .1s;
+	-moz-transition-duration: .1s;
+	-o-transition-duration: .1;
+	transition-duration: .1s;
 	/*transition-delay*/
 	-webkit-transition-delay: 0s;
 	-moz-transition-delay: 0s;
