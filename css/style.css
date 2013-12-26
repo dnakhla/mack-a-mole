@@ -169,6 +169,22 @@ section {
 }
 
 #gameboard li.popped-missed {
-	background: #BD4F47;
+	background: #fff url('/css/img/mole.jpg') no-repeat;
+	background-position: -3px 50px;
+	/*transition-property*/
+	-webkit-transition-property: background-position;
+	-moz-transition-property: background-position;
+	-o-transition-property: background-position;
+	transition-property: background-position;
+	/*transition-duration*/
+	-webkit-transition-duration: .2s;
+	-moz-transition-duration: .2s;
+	-o-transition-duration: .2;
+	transition-duration: .2s;
+	/*transition-delay*/
+	-webkit-transition-delay: 0s;
+	-moz-transition-delay: 0s;
+	-o-transition-delay: 0s;
+	transition-delay: 0s;
 }
 

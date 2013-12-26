@@ -48,7 +48,7 @@
           _me.misses--;
         }
         liveDOMElement.html(_me.misses);
-        _me.popSound.load();
+        _me.popSound.src = _me.popSound.src;
         _me.popSound.play();
         if (_me.misses === 0 && _me.gameTimer !== false) {
           return _me.endGame();
@@ -62,7 +62,7 @@
         e.stopPropagation();
         clickedMole = moles[holes.indexOf(e.target)];
         if (!!clickedMole && clickedMole.isPopped()) {
-          _me.bangSound.load();
+          _me.bangSound.src = _me.bangSound.src;
           _me.bangSound.play();
           _me.hits = _me.hits + clickedMole.unpopMole(false);
           return hitDOMElement.html(_me.hits);
@@ -77,8 +77,8 @@
       _ref = this.moles;
       for (key = _i = 0, _len = _ref.length; _i < _len; key = ++_i) {
         mole = _ref[key];
-        clearTimeout(mole.unpopEvent);
         mole.unpopMole(false);
+        clearTimeout(mole.unpopEvent);
       }
       alert('Game Over!');
       return this.historyDOMElement.show().append('<li>' + this.hits + '</li>');
@@ -142,7 +142,7 @@
           $(moleDOMElement).addClass('popped-hit');
           setTimeout(function() {
             return $(moleDOMElement).removeClass('popped-hit');
-          }, 100);
+          }, 200);
           clearTimeout(this.unpopEvent);
           return 1;
         } else {
@@ -150,7 +150,7 @@
           $(moleDOMElement).addClass('popped-missed');
           setTimeout(function() {
             return $(moleDOMElement).removeClass('popped-missed');
-          }, 100);
+          }, 200);
           return 0;
         }
       };

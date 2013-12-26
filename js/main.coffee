@@ -34,7 +34,7 @@ class Game
     $(document).on('missed', (e)->
        _me.misses-- if _me.misses > 0
        liveDOMElement.html(_me.misses)
-       _me.popSound.load()
+       _me.popSound.src =  _me.popSound.src;
        _me.popSound.play();
        return _me.endGame() if _me.misses == 0  &&  _me.gameTimer != false
       )
@@ -46,7 +46,7 @@ class Game
         e.stopPropagation();
         clickedMole =moles[holes.indexOf(e.target)];
         if !!clickedMole && clickedMole.isPopped() 
-          _me.bangSound.load();
+          _me.bangSound.src = _me.bangSound.src
           _me.bangSound.play();
           _me.hits = _me.hits + clickedMole.unpopMole(false)
           hitDOMElement.html(_me.hits)
@@ -55,8 +55,8 @@ class Game
     clearInterval(@gameTimer);
     @gameTimer = false;
     for mole, key in @moles
-       clearTimeout(mole.unpopEvent);
        mole.unpopMole(false);
+       clearTimeout(mole.unpopEvent);
     alert('Game Over!')
     @historyDOMElement.show().append('<li>'+@hits+'</li>');       
   render: (delay = 3000) ->
@@ -91,7 +91,7 @@ class Mole
         $(moleDOMElement).addClass('popped-hit');
         setTimeout(()->
          $(moleDOMElement).removeClass('popped-hit');
-        , 100);
+        , 200);
         clearTimeout(@unpopEvent);
         return 1
       else
@@ -99,7 +99,7 @@ class Mole
         $(moleDOMElement).addClass('popped-missed');
         setTimeout(()->
          $(moleDOMElement).removeClass('popped-missed');
-        , 100);
+        , 200);
         return 0
     @popMole = popMole;
     @unpopMole = unpopMole;
