@@ -77,8 +77,7 @@
       _ref = this.moles;
       for (key = _i = 0, _len = _ref.length; _i < _len; key = ++_i) {
         mole = _ref[key];
-        mole.unpopMole(false);
-        clearTimeout(mole.unpopEvent);
+        mole.unpopMole(true);
       }
       alert('Game Over!');
       return this.historyDOMElement.show().append('<li>' + this.hits + '</li>');

@@ -167,7 +167,7 @@ section {
 }
 
 #gameboard li.popped-missed {
-	background: #BD4F47 url('/css/img/mole.jpg') no-repeat -3px 80px;
+	background: #fff url('/css/img/mole.jpg') no-repeat -3px 80px;
 	border: 1px solid #BD4F47;
 	/*transition-property*/
 	-webkit-transition-property: background-position;

@@ -2,6 +2,7 @@
 #made with coffee because i wanted to keep practicing it
 class Game
   constructor: (@gridDOMElement = $('#gameboard'),lives=25, newGameDOMElement =$('#newGame'), hitDOMElement =  $('#hit'), liveDOMElement = $('#lives'), @historyDOMElement=$('.history'), @popSound=document.getElementById('popSound'), @bangSound=document.getElementById('bangSound')) ->
+    #i should read arguments here instead of haveing parameters to the constructor 
     _me = this;
     moles = [];
     holes=[];
@@ -55,8 +56,7 @@ class Game
     clearInterval(@gameTimer);
     @gameTimer = false;
     for mole, key in @moles
-       mole.unpopMole(false);
-       clearTimeout(mole.unpopEvent);
+       mole.unpopMole(true);
     alert('Game Over!')
     @historyDOMElement.show().append('<li>'+@hits+'</li>');       
   render: (delay = 3000) ->
