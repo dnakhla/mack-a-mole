@@ -68,6 +68,7 @@ class Game
        for mole, key in moles
          mole.popMole((Math.random() * 1 * (delay - _me.hits * 2) )+ 300) if mole.isPopped() is false && Math.floor(Math.random()*10) < 4
     popRandom();
+    #should be recrusive setimeout
     setInterval(()->
       popRandom()
      delay);
