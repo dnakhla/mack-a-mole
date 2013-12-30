@@ -8,7 +8,7 @@
       var holes, moles, _me;
       this.gridDOMElement = gridDOMElement != null ? gridDOMElement : $('#gameboard');
       if (lives == null) {
-        lives = 25;
+        lives = 40;
       }
       if (newGameDOMElement == null) {
         newGameDOMElement = $('#newGame');
@@ -28,6 +28,7 @@
       this.hits = 0;
       this.misses = lives;
       this.gameTimer = false;
+      this.gameTimers = [];
       this.gridDOMElement.children().each(function(index) {
         var oneMole;
         oneMole = new Mole(this);
@@ -40,7 +41,7 @@
         if (_me.gameTimer === false) {
           _me.hits = 0;
           _me.misses = lives;
-          return _me.gameTimer = _me.render();
+          return _me.render();
         }
       });
       $(document).on('missed', function(e) {
@@ -72,31 +73,32 @@
 
     Game.prototype.endGame = function() {
       var key, mole, _i, _len, _ref;
-      clearInterval(this.gameTimer);
+      clearTimeout(this.gameTimer);
       this.gameTimer = false;
       _ref = this.moles;
       for (key = _i = 0, _len = _ref.length; _i < _len; key = ++_i) {
         mole = _ref[key];
         mole.unpopMole(true);
+        clearTimeout(mole.unpopEvent);
       }
       alert('Game Over!');
       return this.historyDOMElement.show().append('<li>' + this.hits + '</li>');
     };
 
     Game.prototype.render = function(delay) {
-      var moles, popRandom, _me;
+      var invervalTimer, popRandom, _me;
       if (delay == null) {
         delay = 3000;
       }
       this.hitDOMElement.html(this.hits);
       this.liveDOMElement.html(this.misses);
-      moles = this.moles;
       _me = this;
       popRandom = function() {
-        var key, mole, _i, _len, _results;
+        var key, mole, _i, _len, _ref, _results;
+        _ref = _me.moles;
         _results = [];
-        for (key = _i = 0, _len = moles.length; _i < _len; key = ++_i) {
-          mole = moles[key];
+        for (key = _i = 0, _len = _ref.length; _i < _len; key = ++_i) {
+          mole = _ref[key];
           if (mole.isPopped() === false && Math.floor(Math.random() * 10) < 4) {
             _results.push(mole.popMole((Math.random() * 1 * (delay - _me.hits * 2)) + 300));
           } else {
@@ -106,9 +108,13 @@
         return _results;
       };
       popRandom();
-      return setInterval(function() {
-        return popRandom();
-      }, delay);
+      invervalTimer = function() {
+        delay = 3000 - (_me.hits * 20);
+        console.log(delay);
+        popRandom();
+        return _me.gameTimer = setTimeout(invervalTimer, delay - (_me.hits * 20));
+      };
+      return _me.gameTimer = setTimeout(invervalTimer, delay);
     };
 
     return Game;

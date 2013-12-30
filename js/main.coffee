@@ -1,7 +1,7 @@
 'use strict'
 #made with coffee because i wanted to keep practicing it
 class Game
-  constructor: (@gridDOMElement = $('#gameboard'),lives=25, newGameDOMElement =$('#newGame'), hitDOMElement =  $('#hit'), liveDOMElement = $('#lives'), @historyDOMElement=$('.history'), @popSound=document.getElementById('popSound'), @bangSound=document.getElementById('bangSound')) ->
+  constructor: (@gridDOMElement = $('#gameboard'),lives=40, newGameDOMElement =$('#newGame'), hitDOMElement =  $('#hit'), liveDOMElement = $('#lives'), @historyDOMElement=$('.history'), @popSound=document.getElementById('popSound'), @bangSound=document.getElementById('bangSound')) ->
     #i should read arguments here instead of haveing parameters to the constructor 
     _me = this;
     moles = [];
@@ -9,6 +9,7 @@ class Game
     @hits = 0;
     @misses = lives;
     @gameTimer = false;
+    @gameTimers = [];
     @gridDOMElement.children().each((index)->
       oneMole =new Mole this
       moles.push(oneMole);
@@ -29,8 +30,7 @@ class Game
       if _me.gameTimer is false
         _me.hits=0;
         _me.misses= lives;
-        _me.gameTimer = _me.render();
-     
+        _me.render();
     )
     $(document).on('missed', (e)->
        _me.misses-- if _me.misses > 0
@@ -53,25 +53,31 @@ class Game
           hitDOMElement.html(_me.hits)
         )
   endGame: ()->
-    clearInterval(@gameTimer);
+    clearTimeout(@gameTimer);
     @gameTimer = false;
     for mole, key in @moles
-       mole.unpopMole(true);
+       mole.unpopMole(true)
+       clearTimeout(mole.unpopEvent);
     alert('Game Over!')
     @historyDOMElement.show().append('<li>'+@hits+'</li>');       
   render: (delay = 3000) ->
     @hitDOMElement.html(@hits)
     @liveDOMElement.html(@misses)
-    moles = @moles;
     _me= this;
     popRandom= ()->
-       for mole, key in moles
+       for mole, key in _me.moles
          mole.popMole((Math.random() * 1 * (delay - _me.hits * 2) )+ 300) if mole.isPopped() is false && Math.floor(Math.random()*10) < 4
     popRandom();
     #should be recrusive setimeout
-    setInterval(()->
+    invervalTimer = ()->
+      delay = 3000 - (_me.hits * 20)
+      console.log delay
       popRandom()
-     delay);
+      _me.gameTimer = setTimeout( invervalTimer
+      delay - (_me.hits * 20) )
+    _me.gameTimer = setTimeout( invervalTimer
+      delay)
+      
 class Mole
   constructor: (moleDOMElement) ->
     _popped=false;
