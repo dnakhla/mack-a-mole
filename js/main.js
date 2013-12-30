@@ -110,7 +110,6 @@
       popRandom();
       invervalTimer = function() {
         delay = 3000 - (_me.hits * 20);
-        console.log(delay);
         popRandom();
         return _me.gameTimer = setTimeout(invervalTimer, delay - (_me.hits * 20));
       };

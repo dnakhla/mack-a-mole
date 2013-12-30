@@ -71,7 +71,6 @@ class Game
     #should be recrusive setimeout
     invervalTimer = ()->
       delay = 3000 - (_me.hits * 20)
-      console.log delay
       popRandom()
       _me.gameTimer = setTimeout( invervalTimer
       delay - (_me.hits * 20) )
