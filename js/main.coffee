@@ -1,7 +1,7 @@
 'use strict'
 #made with coffee because i wanted to keep practicing it
 class Game
-  constructor: (@gridDOMElement = $('#gameboard'),lives=40, newGameDOMElement =$('#newGame'), hitDOMElement =  $('#hit'), liveDOMElement = $('#lives'), @historyDOMElement=$('.history'), @popSound=document.getElementById('popSound'), @bangSound=document.getElementById('bangSound')) ->
+  constructor: (@gridDOMElement = $('#gameboard'),lives=40, newGameDOMElement =$('#newGame'), hitDOMElement =  $('#hit'), liveDOMElement = $('#lives'), @historyDOMElement=$('.history')) ->
     #i should read arguments here instead of haveing parameters to the constructor 
     _me = this;
     moles = [];
@@ -35,7 +35,7 @@ class Game
     $(document).on('missed', (e)->
        _me.misses-- if _me.misses > 0
        liveDOMElement.html(_me.misses)
-       _me.popSound.src =  _me.popSound.src;
+       _me.popSound =   new Audio("/files/pop.mp3");
        _me.popSound.play();
        return _me.endGame() if _me.misses == 0  &&  _me.gameTimer != false
       )
@@ -47,7 +47,7 @@ class Game
         e.stopPropagation();
         clickedMole =moles[holes.indexOf(e.target)];
         if !!clickedMole && clickedMole.isPopped() 
-          _me.bangSound.src = _me.bangSound.src
+          _me.bangSound= new Audio("/files/bang.mp3");
           _me.bangSound.play();
           _me.hits = _me.hits + clickedMole.unpopMole(false)
           hitDOMElement.html(_me.hits)

@@ -4,7 +4,7 @@
   var Game, Mole;
 
   Game = (function() {
-    function Game(gridDOMElement, lives, newGameDOMElement, hitDOMElement, liveDOMElement, historyDOMElement, popSound, bangSound) {
+    function Game(gridDOMElement, lives, newGameDOMElement, hitDOMElement, liveDOMElement, historyDOMElement) {
       var holes, moles, _me;
       this.gridDOMElement = gridDOMElement != null ? gridDOMElement : $('#gameboard');
       if (lives == null) {
@@ -20,8 +20,6 @@
         liveDOMElement = $('#lives');
       }
       this.historyDOMElement = historyDOMElement != null ? historyDOMElement : $('.history');
-      this.popSound = popSound != null ? popSound : document.getElementById('popSound');
-      this.bangSound = bangSound != null ? bangSound : document.getElementById('bangSound');
       _me = this;
       moles = [];
       holes = [];
@@ -49,7 +47,7 @@
           _me.misses--;
         }
         liveDOMElement.html(_me.misses);
-        _me.popSound.src = _me.popSound.src;
+        _me.popSound = new Audio("/files/pop.mp3");
         _me.popSound.play();
         if (_me.misses === 0 && _me.gameTimer !== false) {
           return _me.endGame();
@@ -63,7 +61,7 @@
         e.stopPropagation();
         clickedMole = moles[holes.indexOf(e.target)];
         if (!!clickedMole && clickedMole.isPopped()) {
-          _me.bangSound.src = _me.bangSound.src;
+          _me.bangSound = new Audio("/files/bang.mp3");
           _me.bangSound.play();
           _me.hits = _me.hits + clickedMole.unpopMole(false);
           return hitDOMElement.html(_me.hits);
