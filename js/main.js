@@ -34,6 +34,10 @@
         return holes.push(this);
       });
       this.moles = moles;
+      this.liveDOMElement = liveDOMElement;
+      this.hitDOMElement = hitDOMElement;
+      this.bangSound = new Audio("/files/bang.mp3");
+      this.popSound = new Audio("/files/pop.mp3");
       newGameDOMElement.click(function(e) {
         e.preventDefault();
         if (_me.gameTimer === false) {
@@ -47,21 +51,20 @@
           _me.misses--;
         }
         liveDOMElement.html(_me.misses);
-        _me.popSound = new Audio("/files/pop.mp3");
+        _me.popSound.load();
         _me.popSound.play();
+        _me.popSound = void 0;
         if (_me.misses === 0 && _me.gameTimer !== false) {
           return _me.endGame();
         }
       });
-      this.liveDOMElement = liveDOMElement;
-      this.hitDOMElement = hitDOMElement;
       this.gridDOMElement.on('mousedown touchstart', function(e) {
         var clickedMole;
         e.preventDefault();
         e.stopPropagation();
         clickedMole = moles[holes.indexOf(e.target)];
         if (!!clickedMole && clickedMole.isPopped()) {
-          _me.bangSound = new Audio("/files/bang.mp3");
+          _me.bangSound.load();
           _me.bangSound.play();
           _me.hits = _me.hits + clickedMole.unpopMole(false);
           return hitDOMElement.html(_me.hits);

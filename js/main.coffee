@@ -25,6 +25,11 @@ class Game
         # )
     );
     @moles = moles;
+    @liveDOMElement =liveDOMElement;
+    @hitDOMElement  =hitDOMElement;
+    #more effcient that binding to the elements
+    @bangSound= new Audio("/files/bang.mp3");
+    @popSound =   new Audio("/files/pop.mp3");
     newGameDOMElement.click((e)->
       e.preventDefault()
       if _me.gameTimer is false
@@ -35,19 +40,17 @@ class Game
     $(document).on('missed', (e)->
        _me.misses-- if _me.misses > 0
        liveDOMElement.html(_me.misses)
-       _me.popSound =   new Audio("/files/pop.mp3");
+       _me.popSound.load();
        _me.popSound.play();
+       _me.popSound = undefined;
        return _me.endGame() if _me.misses == 0  &&  _me.gameTimer != false
       )
-    @liveDOMElement =liveDOMElement;
-    @hitDOMElement  =hitDOMElement;
-    #more effcient that binding to the elements
     @gridDOMElement.on('mousedown touchstart', (e)->
         e.preventDefault();
         e.stopPropagation();
         clickedMole =moles[holes.indexOf(e.target)];
         if !!clickedMole && clickedMole.isPopped() 
-          _me.bangSound= new Audio("/files/bang.mp3");
+          _me.bangSound.load();
           _me.bangSound.play();
           _me.hits = _me.hits + clickedMole.unpopMole(false)
           hitDOMElement.html(_me.hits)
@@ -68,7 +71,6 @@ class Game
        for mole, key in _me.moles
          mole.popMole((Math.random() * 1 * (delay - _me.hits * 2) )+ 300) if mole.isPopped() is false && Math.floor(Math.random()*10) < 4
     popRandom();
-    #should be recrusive setimeout
     invervalTimer = ()->
       delay = 3000 - (_me.hits * 20)
       popRandom()
