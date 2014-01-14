@@ -2,4 +2,4 @@ mack-a-mole
 ===========
 
 live on:
-example.danielnakhla.com
+<a href='example.danielnakhla.com'>example.danielnakhla.com</a>
