@@ -47,6 +47,9 @@
         }
       });
       $(document).on('missed', function(e) {
+        if (!this.gameTimer){
+          return;
+        }
         if (_me.misses > 0) {
           _me.misses--;
         }
@@ -54,7 +57,6 @@
         _me.popSound.load();
         _me.popSound.play();
         if (Number(_me.misses) <= 0) {
-          console.log('end');
           return _me.endGame();
         }
       });
@@ -75,12 +77,6 @@
       var key, mole, _i, _len, _ref;
       clearTimeout(this.gameTimer);
       this.gameTimer = false;
-      _ref = this.moles;
-      for (key = _i = 0, _len = _ref.length; _i < _len; key = ++_i) {
-        mole = _ref[key];
-        mole.unpopMole(true);
-        clearTimeout(mole.unpopEvent);
-      }
       alert('Game Over!');
       process.exit();
       return this.historyDOMElement.show().append('<li>' + this.hits + '</li>');
