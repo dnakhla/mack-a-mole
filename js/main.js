@@ -47,9 +47,6 @@
         }
       });
       $(document).on('missed', function(e) {
-        if (!this.gameTimer){
-          return;
-        }
         if (_me.misses > 0) {
           _me.misses--;
         }
@@ -74,11 +71,13 @@
     }
 
     Game.prototype.endGame = function() {
+      if (this.gameTimer == false) {
+        return;
+      }
       var key, mole, _i, _len, _ref;
       clearTimeout(this.gameTimer);
       this.gameTimer = false;
       alert('Game Over!');
-      process.exit();
       return this.historyDOMElement.show().append('<li>' + this.hits + '</li>');
     };
 
