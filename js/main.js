@@ -54,6 +54,7 @@
         _me.popSound.load();
         _me.popSound.play();
         if (Number(_me.misses) <= 0) {
+          console.log('end');
           return _me.endGame();
         }
       });
