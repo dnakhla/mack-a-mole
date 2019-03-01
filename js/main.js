@@ -75,12 +75,6 @@
       var key, mole, _i, _len, _ref;
       clearTimeout(this.gameTimer);
       this.gameTimer = false;
-      _ref = this.moles;
-      for (key = _i = 0, _len = _ref.length; _i < _len; key = ++_i) {
-        mole = _ref[key];
-        mole.unpopMole(true);
-        clearTimeout(mole.unpopEvent);
-      }
       alert('Game Over!');
       return this.historyDOMElement.show().append('<li>' + this.hits + '</li>');
     };
