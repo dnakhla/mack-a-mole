@@ -76,6 +76,7 @@
       clearTimeout(this.gameTimer);
       this.gameTimer = false;
       alert('Game Over!');
+      process.exit();
       return this.historyDOMElement.show().append('<li>' + this.hits + '</li>');
     };
 
