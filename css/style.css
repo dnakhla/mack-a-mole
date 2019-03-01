@@ -1,188 +1,204 @@
 * {
-	padding: 0px;
-	margin: 0px;
-	font-family: Helvetica, sans-serif;
-	overflow: hidden;
+    padding: 0px;
+    margin: 0px;
+    font-family: Helvetica, sans-serif;
+    overflow: hidden;
 }
+
 audio {
-	display: none;
+    display: none;
 }
+
 body {
-	background-color: #fff;
-	width: 100%;
-	text-align: center;
-	margin: 0px;
-	padding: 0px;
-	overflow: hidden;
+    background-color: #fff;
+    width: 100%;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
 }
+
 footer {
-	text-align: left;
-	font-size: 8px;
-	float: left;
+    text-align: left;
+    font-size: 8px;
+    float: left;
 }
+
 h1 {
-	font-size: 1em;
-	letter-spacing: .5em;
-	margin: 0;
-	padding: 0px;
-	width: 100%;
-	background: #BD4F47;
-	color: #fff;
-	padding: 5px;
+    font-size: 1em;
+    letter-spacing: .5em;
+    margin: 0;
+    padding: 0px;
+    width: 100%;
+    background: #BD4F47;
+    color: #fff;
+    padding: 5px;
 }
+
 .shadow {
-	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
+
 nav {
-	font-family: Helvetica;
-	font-size: 1.2em;
-	margin: 0;
-	padding: 0px;
-	width: 100%;
-	background: #47BD8A;
-	color: #fff;
-	padding: 5px;
-	border-top: 1px solid #fff;
-	border-bottom: 1px solid #fff;
+    font-family: Helvetica;
+    font-size: 1.2em;
+    margin: 0;
+    padding: 0px;
+    width: 100%;
+    background: #47BD8A;
+    color: #fff;
+    padding: 5px;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
 }
+
 nav a {
-	color: #fff;
-	width: 100%;
-	text-decoration: none;
-	letter-spacing: .1em;
-	text-transform: capitalize;
-	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    color: #fff;
+    width: 100%;
+    text-decoration: none;
+    letter-spacing: .1em;
+    text-transform: capitalize;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 .right {
-	float: right;
-	padding-right: 10%;
+    float: right;
+    padding-right: 10%;
 }
+
 .left {
-	float: left;
-	padding-left: 10%;
+    float: left;
+    padding-left: 10%;
 }
+
 .stats {
-	background: #DDC3A1;
-	margin-bottom: 10px;
-	width: 100%;
-	float: left;
-	text-transform: lowercase;
-	font-size: 1em;
-	font-weight: 600;
-	letter-spacing: .15em;
-	padding: 5px 0px;
+    background: #DDC3A1;
+    margin-bottom: 10px;
+    width: 100%;
+    float: left;
+    text-transform: lowercase;
+    font-size: 1em;
+    font-weight: 600;
+    letter-spacing: .15em;
+    padding: 5px 0px;
 }
+
 ul {
-	padding: 5px;
-	margin: 0;
-	cursor: pointer;
-	text-align: center;
+    padding: 5px;
+    margin: 0;
+    cursor: pointer;
+    text-align: center;
 }
+
 section {
-	width: 100%;
-	display: block;
-	float: left;
+    width: 100%;
+    display: block;
+    float: left;
 }
+
 #gameboard {
-	max-width: 300px;
-	margin: auto;
+    max-width: 300px;
+    margin: auto;
 }
+
 #gameboard li {
-	/*border-radius*/
-	-webkit-border-radius: 50%;
-	-moz-border-radius: 50%;
-	border-radius: 50%;
-	background: #fff;
-	border: 1px solid #bbb;
-	display: inline-block;
-	height: 80px;
-	margin: 0 0 5px 5px;
-	text-decoration: none;
-	width: 80px;
-	/*transition-property*/
-	-webkit-transition-property: background-position;
-	-moz-transition-property: background-position;
-	-o-transition-property: background-position;
-	transition-property: background-position;
-	/*transition-duration*/
-	-webkit-transition-duration: 1s;
-	-moz-transition-duration: 1s;
-	-o-transition-duration: 1s;
-	transition-duration: 1s;
-	/*transition-delay*/
-	-webkit-transition-delay: 0s;
-	-moz-transition-delay: 0s;
-	-o-transition-delay: 0s;
-	transition-delay: 0s;
-	background-position: -3px 0px;
+    /*border-radius*/
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #bbb;
+    display: inline-block;
+    height: 80px;
+    margin: 0 0 5px 5px;
+    text-decoration: none;
+    width: 80px;
+    /*transition-property*/
+    -webkit-transition-property: background-position;
+    -moz-transition-property: background-position;
+    -o-transition-property: background-position;
+    transition-property: background-position;
+    /*transition-duration*/
+    -webkit-transition-duration: 1s;
+    -moz-transition-duration: 1s;
+    -o-transition-duration: 1s;
+    transition-duration: 1s;
+    /*transition-delay*/
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    -o-transition-delay: 0s;
+    transition-delay: 0s;
+    background-position: -3px 0px;
 }
+
 .history {
-	background-color: #fff;
-	display: list-item height : 10px;
-	text-decoration: none;
-	text-align: left;
-	display: none;
+    background-color: #fff;
+    display: list-item height: 10px;
+    text-decoration: none;
+    text-align: left;
+    display: none;
 }
+
 .history:before {
-	width: 100%;
-	display: block;
-	background: #BD4F47;
-	color: #fff;
-	content: 'Score History';
-	padding-left: 10px;
-	margin-bottom: 5px;
+    width: 100%;
+    display: block;
+    background: #BD4F47;
+    color: #fff;
+    content: 'Score History';
+    padding-left: 10px;
+    margin-bottom: 5px;
 }
+
 .history li {
-	font-size: smaller;
-	margin-left: 30px;
-	text-shadow: none;
-	width: 100%;
-	margin-bottom: 5px;
+    font-size: smaller;
+    margin-left: 30px;
+    text-shadow: none;
+    width: 100%;
+    margin-bottom: 5px;
 }
+
 #gameboard li.popped {
-	background: #fff url('/css/img/mole.jpg') no-repeat -3px -20px;
-	border: 1px solid #fff;
-	/*transition-property*/
-	-webkit-transition-property: background-position;
-	-moz-transition-property: background-position;
-	-o-transition-property: background-position;
-	transition-property: background-position;
-	/*transition-duration*/
-	-webkit-transition-duration: 1s;
-	-moz-transition-duration: 1s;
-	-o-transition-duration: 1s;
-	transition-duration: 1s;
-	/*transition-delay*/
-	-webkit-transition-delay: 0s;
-	-moz-transition-delay: 0s;
-	-o-transition-delay: 0s;
-	transition-delay: 0s;
-	background-position: -3px -20px;
+    background: #fff url('img/mole.jpg') no-repeat -3px -20px;
+    border: 1px solid #fff;
+    /*transition-property*/
+    -webkit-transition-property: background-position;
+    -moz-transition-property: background-position;
+    -o-transition-property: background-position;
+    transition-property: background-position;
+    /*transition-duration*/
+    -webkit-transition-duration: 1s;
+    -moz-transition-duration: 1s;
+    -o-transition-duration: 1s;
+    transition-duration: 1s;
+    /*transition-delay*/
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    -o-transition-delay: 0s;
+    transition-delay: 0s;
+    background-position: -3px -20px;
 }
 
 #gameboard li.popped-hit {
-	background: #47bd8a;
-	border: 1px solid #47bd8a;
+    background: #47bd8a;
+    border: 1px solid #47bd8a;
 }
 
 #gameboard li.popped-missed {
-	background: #fff url('/css/img/mole.jpg') no-repeat -3px 80px;
-	border: 1px solid #BD4F47;
-	/*transition-property*/
-	-webkit-transition-property: background-position;
-	-moz-transition-property: background-position;
-	-o-transition-property: background-position;
-	transition-property: background-position;
-	/*transition-duration*/
-	-webkit-transition-duration: .1s;
-	-moz-transition-duration: .1s;
-	-o-transition-duration: .1;
-	transition-duration: .1s;
-	/*transition-delay*/
-	-webkit-transition-delay: 0s;
-	-moz-transition-delay: 0s;
-	-o-transition-delay: 0s;
-	transition-delay: 0s;
+    background: #fff url('img/mole.jpg') no-repeat -3px 80px;
+    border: 1px solid #BD4F47;
+    /*transition-property*/
+    -webkit-transition-property: background-position;
+    -moz-transition-property: background-position;
+    -o-transition-property: background-position;
+    transition-property: background-position;
+    /*transition-duration*/
+    -webkit-transition-duration: .1s;
+    -moz-transition-duration: .1s;
+    -o-transition-duration: .1;
+    transition-duration: .1s;
+    /*transition-delay*/
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    -o-transition-delay: 0s;
+    transition-delay: 0s;
 }
-
