@@ -52,8 +52,7 @@
         }
         liveDOMElement.html(_me.misses);
         _me.popSound.play();
-        _me.popSound = void 0;
-        if (_me.misses < 0) {
+        if (lives <= 0) {
           return _me.endGame();
         }
       });
